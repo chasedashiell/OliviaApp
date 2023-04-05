@@ -35,7 +35,6 @@ public class CSVReader {
             for (int j = i+1; j < list.size(); j++){
                 toCheck = list.get(j);
                 if (currArray[0].equals(toCheck[0]) && currArray[1].equals(toCheck[1]) && currArray[2].equals(toCheck[2])){
-                    System.out.println(i);
                     list.remove(i);
                 }
             }
@@ -43,13 +42,20 @@ public class CSVReader {
         return list;
     }
 
+    public static void printArrayListOfArrays(ArrayList<String[]> list){
+        for(int i = 0; i < list.size(); i++){
+            System.out.println(Arrays.toString(list.get(i)));
+        }
+    }
+
+    public static boolean sortArrayListOfStringArrays(ArrayList<String[]> list){
+        for 
+    }
+
     public static void main(String[] args) {
-        String path = "C:\\Users\\dashc\\Downloads\\Copy of Reading List - Sheet1.csv";
+        String path = "C:\\Users\\230010154\\JAVA\\OliviaApp\\Copy of Reading List - Sheet1.csv";
         ArrayList<String[]> one = CSVToArrayListOfStringArrays(path);
         one = removeDuplicates(one);
-        for(int i = 0; i < one.size(); i++){
-            System.out.println(Arrays.toString(one.get(i)));
-        }
-        System.out.println(Arrays.toString(one.get(65)));
+        printArrayListOfArrays(one);
     }
 }
