@@ -49,10 +49,10 @@ public class CSVReader {
         }
     }
 
-    public static ArrayList<String[]> sortArrayListOfStringArraysByLastName(ArrayList<String[]> list) {
+    public static ArrayList<String[]> sortArrayListOfStringArraysByLastName(ArrayList<String[]> list, int sortBy) {
         for (int i = 1; i < list.size(); i++) {
-            int minIndex = 1;
-            String minValue = list.get(1)[0];
+            int minIndex = i;
+            String minValue = list.get(i)[0];
             for (int j = i + 1; j < list.size(); j++) {
                 if (list.get(j)[0].compareTo(minValue) < 0) {
                     minValue = list.get(j)[0];
@@ -70,7 +70,7 @@ public class CSVReader {
         String path = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\Copy of Reading List - Sheet1.csv";
         ArrayList<String[]> one = CSVToArrayListOfStringArrays(path);
         one = removeDuplicates(one);
-        one = sortArrayListOfStringArraysByLastName(one);
+        one = sortArrayListOfStringArraysByLastName(one, 0);
         printArrayListOfArrays(one);
 
     }
