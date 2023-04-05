@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CSVReader {
-    public static ArrayList<String[]> CSVToArrayListOfStringArrays(String path) {
+    public static ArrayList<String[]> CSVToArrayListOfStringArrays(String fliePath) {
         String line = "";
         ArrayList<String[]> solution = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader br = new BufferedReader(new FileReader(fliePath));
 
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
@@ -67,8 +67,8 @@ public class CSVReader {
     }
 
     public static void main(String[] args) {
-        String path = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\Copy of Reading List - Sheet1.csv";
-        ArrayList<String[]> one = CSVToArrayListOfStringArrays(path);
+        String fliePath = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\Copy of Reading List - Sheet1.csv";
+        ArrayList<String[]> one = CSVToArrayListOfStringArrays(fliePath);
         one = removeDuplicates(one);
         one = sortArrayListOfStringArrays(one, 0);
         printArrayListOfArrays(one);
