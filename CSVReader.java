@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CSVReader {
-    public static ArrayList<String[]> CSVTo2dArray() {
-        String path = "C:\\Users\\dashc\\Downloads\\Copy of Reading List - Sheet1.csv";
+    public static ArrayList<String[]> CSVToArrayListOfArrays(String path) {
         String line = "";
         ArrayList<String[]> solution = new ArrayList<>();
         try {
@@ -27,11 +26,10 @@ public class CSVReader {
         }
         return solution;
     }
+
     public static void main(String[] args) {
-        ArrayList<String[]> one = CSVTo2dArray();
+        String path = "C:\\Users\\dashc\\Downloads\\Copy of Reading List - Sheet1.csv";
+        ArrayList<String[]> one = CSVToArrayListOfArrays(path);
         System.out.println(one);
-        for (int i = 0; i < one.size(); i++){
-            System.out.println(Arrays.toString(one.get(i)));
-        }
     }
 }
