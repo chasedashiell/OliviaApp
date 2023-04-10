@@ -1,11 +1,15 @@
 package OliviaApp;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.opencsv.CSVWriter;
 
 public class CSVReader {
     public static ArrayList<String[]> CSVToArrayListOfStringArrays(String fliePath) {
@@ -13,14 +17,13 @@ public class CSVReader {
         ArrayList<String[]> solution = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fliePath));
-            // br.close()
-            // BufferedWriter wr = new BufferedReader(new FileReader(fliePath));
 
             while ((line = br.readLine()) != null) {
-            
+
                 String[] values = line.split(",");
                 solution.add(values);
             }
+            br.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -28,6 +31,25 @@ public class CSVReader {
             e.printStackTrace();
         }
         return solution;
+    }
+
+    public static void writeCSV(String filePath, ArrayList<String[]> list) {
+
+        File file = new File(filePath);
+        try {
+            FileWriter outputFile = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(outputFile);
+
+            String header = list.get(0);
+            writer.writeNext(header);
+
+            for (int i = 1; i < list.size(); i++) {
+                writer.writeNext(list.get(i));
+            }
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<String[]> removeDuplicates(ArrayList<String[]> list) {
@@ -70,11 +92,13 @@ public class CSVReader {
     }
 
     public static void main(String[] args) {
-        String fliePath = "C:\\Users\\230010154\\JAVA\\OliviaApp\\Copy of Reading List - Sheet1.csv";
+        String fliePath = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\prevSave.csv";
         ArrayList<String[]> one = CSVToArrayListOfStringArrays(fliePath);
         one = removeDuplicates(one);
         one = sortArrayListOfStringArrays(one, 0);
         printArrayListOfArrays(one);
+        String path = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\save.csv";
+        writeCSV(path, one);
 
     }
 }
