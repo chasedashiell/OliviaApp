@@ -13,8 +13,11 @@ public class CSVReader {
         ArrayList<String[]> solution = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fliePath));
+            // br.close()
+            // BufferedWriter wr = new BufferedReader(new FileReader(fliePath));
 
             while ((line = br.readLine()) != null) {
+            
                 String[] values = line.split(",");
                 solution.add(values);
             }
@@ -67,7 +70,7 @@ public class CSVReader {
     }
 
     public static void main(String[] args) {
-        String fliePath = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\Copy of Reading List - Sheet1.csv";
+        String fliePath = "C:\\Users\\230010154\\JAVA\\OliviaApp\\Copy of Reading List - Sheet1.csv";
         ArrayList<String[]> one = CSVToArrayListOfStringArrays(fliePath);
         one = removeDuplicates(one);
         one = sortArrayListOfStringArrays(one, 0);
