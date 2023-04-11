@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.opencsv.CSVWriter;
-
 public class CSVReader {
     public static ArrayList<String[]> CSVToArrayListOfStringArrays(String fliePath) {
         String line = "";
@@ -19,8 +17,8 @@ public class CSVReader {
             BufferedReader br = new BufferedReader(new FileReader(fliePath));
 
             while ((line = br.readLine()) != null) {
-
-                String[] values = line.split(",");
+                String[] values = new String[3];
+                values = line.split(",");
                 solution.add(values);
             }
             br.close();
@@ -33,22 +31,30 @@ public class CSVReader {
         return solution;
     }
 
+    // chat gpt helped with this as i was struggling.
+    // this bit was very hard for me.
     public static void writeCSV(String filePath, ArrayList<String[]> list) {
-
-        File file = new File(filePath);
         try {
-            FileWriter outputFile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputFile);
-
-            String header = list.get(0);
-            writer.writeNext(header);
-
-            for (int i = 1; i < list.size(); i++) {
-                writer.writeNext(list.get(i));
+            FileWriter fw = new FileWriter(filePath);
+            for (String[] row : list) {
+                for (int i = 0; i < row.length; i++) {
+                    String fieldValue = row[i];
+                    if (fieldValue.contains("\"")) {
+                        fieldValue = fieldValue.replace("\"", "\"\"");
+                    }
+                    if (fieldValue.contains(",") || fieldValue.contains("\"")) {
+                        fieldValue = "\"" + fieldValue + "\"";
+                    }
+                    fw.write(fieldValue);
+                    if (i < row.length - 1) {
+                        fw.write(",");
+                    }
+                }
+                fw.write(System.lineSeparator());
             }
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            fw.close();
+        } catch (IOException e) {
+            System.err.println(e);
         }
     }
 
