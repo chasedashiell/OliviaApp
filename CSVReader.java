@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Currency;
 
 public class CSVReader {
     public static ArrayList<String[]> CSVToArrayListOfStringArrays(String fliePath) {
@@ -36,11 +37,12 @@ public class CSVReader {
             FileWriter fw = new FileWriter(filePath);
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < list.get(0).length; j++) {
+                    String curValue = list.get(i)[j];
                     if (j == 2) {
-                        fw.write(list.get(i)[j]);
+                        fw.write(curValue);
                         fw.write(System.lineSeparator());
                     } else {
-                        fw.write(list.get(i)[j] + ",");
+                        fw.write(curValue + ",");
                     }
 
                 }
