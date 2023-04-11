@@ -31,30 +31,23 @@ public class CSVReader {
         return solution;
     }
 
-    // chat gpt helped with this as i was struggling.
-    // this bit was very hard for me.
     public static void writeCSV(String filePath, ArrayList<String[]> list) {
         try {
             FileWriter fw = new FileWriter(filePath);
-            for (String[] row : list) {
-                for (int i = 0; i < row.length; i++) {
-                    String fieldValue = row[i];
-                    if (fieldValue.contains("\"")) {
-                        fieldValue = fieldValue.replace("\"", "\"\"");
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = 0; j < list.get(0).length; j++) {
+                    if (j == 2) {
+                        fw.write(list.get(i)[j]);
+                        fw.write(System.lineSeparator());
+                    } else {
+                        fw.write(list.get(i)[j] + ",");
                     }
-                    if (fieldValue.contains(",") || fieldValue.contains("\"")) {
-                        fieldValue = "\"" + fieldValue + "\"";
-                    }
-                    fw.write(fieldValue);
-                    if (i < row.length - 1) {
-                        fw.write(",");
-                    }
+
                 }
-                fw.write(System.lineSeparator());
             }
             fw.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
