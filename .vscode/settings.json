@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "C:\\Users\\230010154\\JAVA\\OliviaApp\\opencsv-5.7.1.jar",
+        "C:\\Users\\230010154\\JAVA\\OliviaApp\\commons-beanutils-1.9.4.jar",
+        "C:\\Users\\230010154\\JAVA\\OliviaApp\\commons-collections4-4.4.jar",
+        "C:\\Users\\230010154\\JAVA\\OliviaApp\\commons-lang3-3.12.0.jar",
+        "C:\\Users\\230010154\\JAVA\\OliviaApp\\commons-text-1.10.0.jar"
+    ]
+}

@@ -1,5 +1,3 @@
-package OliviaApp;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Currency;
 
-public class CSVReader {
+public class ChaseCSVReader {
+    private static String csvSeparator = ",";
     public static ArrayList<String[]> CSVToArrayListOfStringArrays(String fliePath) {
         String line = "";
         ArrayList<String[]> solution = new ArrayList<>();
@@ -19,7 +18,7 @@ public class CSVReader {
 
             while ((line = br.readLine()) != null) {
                 String[] values = new String[3];
-                values = line.split(",");
+                values = line.split(csvSeparator);
                 solution.add(values);
             }
             br.close();
@@ -38,11 +37,12 @@ public class CSVReader {
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < list.get(0).length; j++) {
                     String curValue = list.get(i)[j];
+                    // System.out.println("processing line " + i + " which has " + list.get(i).length + " elements ");
                     if (j == 2) {
                         fw.write(curValue);
                         fw.write(System.lineSeparator());
                     } else {
-                        fw.write(curValue + ",");
+                        fw.write(curValue + csvSeparator);
                     }
 
                 }
@@ -53,21 +53,7 @@ public class CSVReader {
         }
     }
 
-    public static ArrayList<String[]> removeDuplicates(ArrayList<String[]> list) {
-        String[] currArray;
-        String[] toCheck;
-        for (int i = 0; i < list.size(); i++) {
-            currArray = list.get(i);
-            for (int j = i + 1; j < list.size(); j++) {
-                toCheck = list.get(j);
-                if (currArray[0].equals(toCheck[0]) && currArray[1].equals(toCheck[1])
-                        && currArray[2].equals(toCheck[2])) {
-                    list.remove(i);
-                }
-            }
-        }
-        return list;
-    }
+    
 
     public static void printArrayListOfArrays(ArrayList<String[]> list) {
         for (int i = 0; i < list.size(); i++) {
@@ -93,12 +79,12 @@ public class CSVReader {
     }
 
     public static void main(String[] args) {
-        String fliePath = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\prevSave.csv";
+        String fliePath = "C:\\Users\\230010154\\JAVA\\OliviaApp\\prevSave2.csv";
         ArrayList<String[]> one = CSVToArrayListOfStringArrays(fliePath);
         one = removeDuplicates(one);
         one = sortArrayListOfStringArrays(one, 0);
-        printArrayListOfArrays(one);
-        String path = "C:\\Users\\230010154\\Desktop\\java\\OliviaApp\\save.csv";
+        // printArrayListOfArrays(one);
+        String path = "C:\\Users\\230010154\\JAVA\\OliviaApp\\save2.csv";
         writeCSV(path, one);
 
     }
